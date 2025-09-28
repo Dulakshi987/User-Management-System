@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./user.css";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const User = () => {
 
@@ -22,7 +23,7 @@ console.log("Error while fetching data", error);
 
   return (
     <div class="userTable">
-        <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i>Add Users</button>
+        <Link to="/add" type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i>Add Users</Link>
 
         <table class="table table-bordered">
 
