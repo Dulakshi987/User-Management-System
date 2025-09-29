@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./user.css";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const User = () => {
 
@@ -19,7 +20,21 @@ console.log("Error while fetching data", error);
         }
     };
     fetchData()
-},[])
+},[]);
+
+const deleteUser = async(userId)=>{
+    await axios.delete(`http://localhost:8000/api/delete/user/${userId}`)
+    .then ((response) =>
+    {
+        setUsers((preUser)=>preUser.filter((user)=>user._id !==userId))
+        toast.success(response.data.message,{position:"top-right"});
+    })
+        .catch ((error)=>{
+
+            console.log(error);
+        });
+    
+}
 
   return (
     <div class="userTable">
@@ -55,10 +70,10 @@ console.log("Error while fetching data", error);
             {user.address}
         </td>
         <td class="actionButtons">
-        <button type="button" class="btn btn-info">        <i class="fa-solid fa-pen-to-square"></i>
-</button>
+        <Link to={`/update/`+user._id} type="button" class="btn btn-info">        <i class="fa-solid fa-pen-to-square"></i>
+</Link>
 
-        <button type="button" class="btn btn-danger">        <i class="fa-solid fa-trash"></i>
+        <button onClick={()=>deleteUser(user._id)} type="button" class="btn btn-danger">        <i class="fa-solid fa-trash"></i>
 </button>
 
         </td>

@@ -1,10 +1,11 @@
-import React , { useState } from 'react'
+import React , { useEffect, useState } from 'react'
 import axios from 'axios'
-import "./addUser.css";
-import { Link , useNavigate} from 'react-router-dom';
+import "./update.css";
+import { Link , useNavigate , useParams} from 'react-router-dom';
 import toast from "react-hot-toast";
 
-const AddUser = ()=> {
+const UpdateUser = ()=> {
+
     const users ={
         name: "",
         email:"",
@@ -13,6 +14,7 @@ const AddUser = ()=> {
 
     const [user ,setUser] = useState(users);
     const navigate = useNavigate();
+    const {id} = useParams();
 
     const inputHandler = (e) =>{
          const {name, value }=e.target
@@ -20,11 +22,21 @@ const AddUser = ()=> {
          setUser({...user, [name]: value});
     };
 
+    useEffect(()=>{
+        axios.get(`http://localhost:8000/api/user/${id}`)
+        .then((response) => {
+            setUser(response.data);
+        })
+        .catch((error) =>{
+        console.log(error);
+    });
+},[id]);
+
 const submitForm = async (e)=>{
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/user", user)
-    .then((respose)=>{
-        toast.success(respose.data.message,{position:"top-right"});
+    await axios.put(`http://localhost:8000/api/update/user/${id}`, user)
+    .then((response)=>{
+        toast.success(response.data.message,{position:"top-right"});
         navigate("/");
     })
     .catch((error)=>{
@@ -35,22 +47,22 @@ console.log(error)
     <div className='addUser'>
                 <Link to="/" type="button" class="btn btn-secondary">View Users</Link>
 
-        <h3>Add New User</h3>
+        <h3>Update User</h3>
 
         <form className='addUserForm' onSubmit={submitForm}>
             <div className='inputGroup'>
                 <label htmlFor='name'>Name:</label>
-                <input type='text'id='name'  onChange={inputHandler} placeholder='Enter User Name' name='name' autoComplete='off'/>
+                <input type='text'id='name' value={user.name} onChange={inputHandler} placeholder='Enter User Name' name='name' autoComplete='off'/>
                 </div>
 
                 <div className='inputGroup'>
                 <label htmlFor='email'>Email:</label>
-                <input type='email' id='email' onChange={inputHandler} placeholder='Enter User Email' name='email' autoComplete='off'/>
+                <input type='email'id='email' value={user.email} onChange={inputHandler} placeholder='Enter User Email' name='email' autoComplete='off'/>
 </div>
 <div className='inputGroup'>
 
                 <label htmlFor='address'>Address:</label>
-                <input type='text'id='address' onChange={inputHandler} placeholder='Enter User Address' name='address' autoComplete='off'/>
+                <input type='text'id='address' value={user.address} onChange={inputHandler} placeholder='Enter User Address' name='address' autoComplete='off'/>
 
             </div>
 
@@ -63,4 +75,4 @@ console.log(error)
   )
 }
 
-export default AddUser;
+export default UpdateUser;
