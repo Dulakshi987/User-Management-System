@@ -2,11 +2,11 @@
 
 A full-stack web application for managing user data with CRUD (Create, Read, Update, Delete) operations built using the MERN stack.
 
-## 📋 Project Overview
+##  Project Overview
 
 This User Management System is a comprehensive web application that allows administrators to manage user information efficiently. The system provides a clean interface for adding, viewing, updating, and deleting user records. It demonstrates the implementation of RESTful APIs and database operations using modern web technologies.
 
-## ✨ Features
+##  Features
 
 - **Create User**: Add new users with detailed information
 - **Read/View Users**: Display all users in an organized table format
@@ -17,19 +17,27 @@ This User Management System is a comprehensive web application that allows admin
 - **Input Validation**: Form validation for data integrity
 - **API Integration**: RESTful API endpoints for all operations
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 ### Frontend
 - **React.js**: JavaScript library for building user interfaces
+- **React Router DOM**: Routing library for navigation
 - **HTML5**: Markup language for structuring web content
 - **CSS3**: Styling and responsive design
+- **Bootstrap**: CSS framework for responsive design
 - **Axios**: HTTP client for making API requests
+- **React Hot Toast**: Toast notifications for user feedback
+- **Font Awesome**: Icon library for UI elements
 
 ### Backend
 - **Node.js**: JavaScript runtime environment
 - **Express.js**: Web application framework for Node.js
 - **MongoDB**: NoSQL database for storing user data
 - **Mongoose**: ODM (Object Data Modeling) library for MongoDB
+- **CORS**: Cross-Origin Resource Sharing middleware
+- **Body-Parser**: Middleware for parsing request bodies
+- **Dotenv**: Environment variable management
+- **Nodemon**: Auto-restart development server
 
 ### Development Tools
 - **VS Code**: Code editor
@@ -58,12 +66,25 @@ cd server
 npm install
 ```
 
-Required backend packages:
-- express
-- mongoose
-- cors
-- dotenv
-- nodemon (dev dependency)
+**Backend Dependencies:**
+```json
+"dependencies": {
+  "body-parser": "^2.2.0",
+  "cors": "^2.8.5",
+  "dotenv": "^17.2.2",
+  "express": "^5.1.0",
+  "mongoose": "^8.18.2"
+},
+"devDependencies": {
+  "nodemon": "^3.1.10"
+}
+```
+
+Or install individually:
+```bash
+npm install body-parser cors dotenv express mongoose
+npm install --save-dev nodemon
+```
 
 ### Step 3: Install Frontend Dependencies
 ```bash
@@ -71,11 +92,30 @@ cd ../client
 npm install
 ```
 
-Required frontend packages:
-- react
-- react-dom
-- react-router-dom
-- axios
+**Frontend Dependencies:**
+```json
+"dependencies": {
+  "@testing-library/dom": "^10.4.1",
+  "@testing-library/jest-dom": "^6.8.0",
+  "@testing-library/react": "^16.3.0",
+  "@testing-library/user-event": "^13.5.0",
+  "axios": "^1.12.2",
+  "bootstrap": "^5.3.8",
+  "cors": "^2.8.5",
+  "font-awesome": "^4.7.0",
+  "react": "^19.1.1",
+  "react-dom": "^19.1.1",
+  "react-hot-toast": "^2.6.0",
+  "react-router-dom": "^7.9.3",
+  "react-scripts": "5.0.1",
+  "web-vitals": "^2.1.4"
+}
+```
+
+Or install individually:
+```bash
+npm install @testing-library/dom @testing-library/jest-dom @testing-library/react @testing-library/user-event axios bootstrap cors font-awesome react react-dom react-hot-toast react-router-dom react-scripts web-vitals
+```
 
 ### Step 4: Configure Environment Variables
 Create a `.env` file in the backend directory:
@@ -116,42 +156,32 @@ npm start
 
 The React app will open in your browser at `http://localhost:3000`
 
-## Step 8: Add Dependecies
+##  Setting Up in VS Code
 
-You should be add this dependencies use npm google server
+1. **Open the Project**
+   - Launch VS Code
+   - File → Open Folder → Select the User-Management-System directory
 
-1.server(Backend)
-"dependencies": {
-  "body-parser": "^2.2.0",
-  "cors": "^2.8.5",
-  "dotenv": "^17.2.2",
-  "express": "^5.1.0",
-  "mongoose": "^8.18.2"
-},
-"devDependencies": {
-  "nodemon": "^3.1.10"
-}
+2. **Install Recommended Extensions**
+   - ES7+ React/Redux/React-Native snippets
+   - ESLint
+   - Prettier - Code formatter
+   - MongoDB for VS Code
 
-  2.client(Frontend)
- "dependencies": {
-  "@testing-library/dom": "^10.4.1",
-  "@testing-library/jest-dom": "^6.8.0",
-  "@testing-library/react": "^16.3.0",
-  "@testing-library/user-event": "^13.5.0",
-  "axios": "^1.12.2",
-  "bootstrap": "^5.3.8",
-  "cors": "^2.8.5",
-  "font-awesome": "^4.7.0",
-  "react": "^19.1.1",
-  "react-dom": "^19.1.1",
-  "react-hot-toast": "^2.6.0",
-  "react-router-dom": "^7.9.3",
-  "react-scripts": "5.0.1",
-  "web-vitals": "^2.1.4"
-}
+3. **Open Integrated Terminal**
+   - View → Terminal (or Ctrl + `)
+   - Split terminal for running both backend and frontend
 
+4. **Configure VS Code Settings**
+   - Create `.vscode/settings.json`:
+   ```json
+   {
+     "editor.formatOnSave": true,
+     "editor.defaultFormatter": "esbenp.prettier-vscode"
+   }
+   ```
 
-## 🔌 API Endpoints
+##  API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -161,7 +191,7 @@ You should be add this dependencies use npm google server
 | PUT | `/api/users/:id` | Update user |
 | DELETE | `/api/users/:id` | Delete user |
 
-## 🚀 Usage
+##  Usage
 
 1. **Adding a User**
    - Navigate to the "Add User" page
@@ -182,15 +212,12 @@ You should be add this dependencies use npm google server
    - Confirm the deletion
    - User will be removed from the database
 
-##  Testing
+## Testing
 
 You can test the API endpoints using Postman or any API testing tool:
 
 1. Import the API endpoints into Postman
 2. Test each CRUD operation
-3. Verify responses and database updates'
-
-
+3. Verify responses and database updates
 ---
 
-**Happy Coding! 🎉**
